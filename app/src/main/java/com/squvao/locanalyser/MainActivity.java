@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initComponents() {
         initToolbar(); //Метод инициализации Тулбара
-        initFloatingActionButton();//Инициализация круглой кнопки
+        //initFloatingActionButton();//Инициализация круглой кнопки
         initNavigationView();//Инициализация меню навигации
         initButtonPlay();//Инициализация кнопки play
     }
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void initFloatingActionButton() {
+   /* private void initFloatingActionButton() {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-    }
+    }*/
 
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);//Нашли тулбар по id

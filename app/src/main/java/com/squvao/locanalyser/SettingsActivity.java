@@ -51,8 +51,8 @@ public class SettingsActivity extends AppCompatActivity {
         int id = view.getId(); //Опредеяем идентификатор кнопки нажатой в SettingsActivity
         switch(id){
             case R.id.content_settings_button_about_us:
-                /*Intent intent = new Intent(SettingsActivity.this,AboutUsActivity.class);
-                startActivity(intent);*/
+                Intent intent = new Intent(SettingsActivity.this,AboutUsActivity.class);
+                startActivity(intent);
                 break;
             case R.id.content_settings_button_contact_author:
                 ShareCompat.IntentBuilder.from(SettingsActivity.this).setType("message/rfc822")

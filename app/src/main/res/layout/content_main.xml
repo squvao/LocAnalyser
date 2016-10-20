@@ -12,30 +12,47 @@
     tools:context="com.squvao.locanalyser.MainActivity"
     tools:showIn="@layout/activity_main"
     android:orientation="vertical">
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/content_main_text_view_larwg"
-            android:layout_gravity="center"
-            style="@style/Base.TextAppearance.AppCompat.Large"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/content_main_text_view_larwg2"
-            android:layout_gravity="center"
-            style="@style/Base.TextAppearance.AppCompat.Large"/>
-    </LinearLayout>
+        android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/content_main_button_play"
-        android:text="@string/content_main_button_play"
-        android:layout_gravity="center"/>
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/power_button2"
+            android:layout_gravity="center"
+            android:id="@+id/content_main_button_play"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="117dp"
+            style="@style/ButtonStarTheme"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="74dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/content_main_text_view_larwg"
+                android:layout_gravity="center"
+                style="@style/Base.TextAppearance.AppCompat.Large"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/content_main_text_view_larwg2"
+                android:layout_gravity="center"
+                style="@style/Base.TextAppearance.AppCompat.Large"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="___________"
+                android:layout_gravity="center"
+                style="@style/Base.TextAppearance.AppCompat.Large"/>
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
