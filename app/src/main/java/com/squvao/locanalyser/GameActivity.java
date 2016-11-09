@@ -16,6 +16,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -26,8 +28,8 @@ public class GameActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         public void onLocationChanged(Location location) {
             LatLng point = new LatLng(location.getLatitude(), location.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(point).title("You're here"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(point));
+            /*mMap.addMarker(new MarkerOptions().position(point).title("You're here"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(point));*/
             Toast.makeText(GameActivity.this, location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();
         }
 
@@ -46,8 +48,8 @@ public class GameActivity extends FragmentActivity implements OnMapReadyCallback
             Location location = manager.getLastKnownLocation(provider);
             Toast.makeText(GameActivity.this, location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();
             LatLng point = new LatLng(location.getLatitude(), location.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(point).title("You're here"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(point));
+            /*mMap.addMarker(new MarkerOptions().position(point).title("You're here"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(point));*/
         }
 
         @Override
@@ -67,7 +69,7 @@ public class GameActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-    private void location(){
+    private void location() {
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 /*
@@ -75,7 +77,7 @@ public class GameActivity extends FragmentActivity implements OnMapReadyCallback
                 на разрешения доступа к локации. Вывод сообщения если доступ к локации запрещен.
                  */
             Toast.makeText(this, "Access denied", Toast.LENGTH_SHORT).show();
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,android.Manifest.permission.ACCESS_COARSE_LOCATION},123);
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 123);
             return;
         }
         if (mMap != null) {
@@ -100,10 +102,9 @@ public class GameActivity extends FragmentActivity implements OnMapReadyCallback
                 if (loc != null) {
                     Toast.makeText(this, loc.getLatitude() + " " + loc.getLongitude(), Toast.LENGTH_SHORT).show();
                     LatLng point = new LatLng(loc.getLatitude(), loc.getLongitude());
-                    mMap.addMarker(new MarkerOptions().position(point).title(provider));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(point));
-                }
-                else
+                    /*mMap.addMarker(new MarkerOptions().position(point).title(provider));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(point));*/
+                } else
                     Toast.makeText(this, provider + " не сработал", Toast.LENGTH_SHORT).show();
             }
         }
@@ -120,7 +121,8 @@ public class GameActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onPause() {
         Toast.makeText(this, "Pause", Toast.LENGTH_SHORT).show();
         super.onPause();
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         manager.removeUpdates(listener);
@@ -130,6 +132,18 @@ public class GameActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         Toast.makeText(this, "OnMapReady", Toast.LENGTH_SHORT).show();
         mMap = googleMap;
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            return;
+        }
+        mMap.setMyLocationEnabled(true);//установка отображения точки.
+
+        LatLng point = new LatLng(51.2794021,1.086669);
+        //mMap.addMarker(new MarkerOptions().position(point).title("You're here").icon(BitmapDescriptorFactory.fromResource(R.drawable.castle_icon)).);
+        //добавление точки , которая меняет размер при увеличении масштаба
+        mMap.addGroundOverlay(new GroundOverlayOptions().image(BitmapDescriptorFactory.fromResource(R.drawable.castle_icon)).position(point, 35f, 35f));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(point));
         location();
         UiSettings uiSettings = mMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(true);
