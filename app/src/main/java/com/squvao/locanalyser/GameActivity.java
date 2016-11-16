@@ -1,6 +1,7 @@
 package com.squvao.locanalyser;
 
 import android.*;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -9,8 +10,10 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -92,9 +95,12 @@ public class GameActivity extends FragmentActivity implements OnMapReadyCallback
         PASSIVE_PROVIDER это сигнал сотового оператора
         Build.VERSION.SDK_INT проверка на версию Андроид ECLAIR_MR1 (Андроид 2.1)
          */
+            Location loc = null;
             String[] providers = new String[]{LocationManager.GPS_PROVIDER, LocationManager.NETWORK_PROVIDER, LocationManager.PASSIVE_PROVIDER};
+
             for (String provider : providers) {
-                Location loc = manager.getLastKnownLocation(provider); //получение локации
+                loc = manager.getLastKnownLocation(provider); //получение локации
+
                 /*
                 Локация может быть не найдена если провайдеры не отвечают
                 Соответственно проверяем ее на пустоту.
@@ -107,7 +113,28 @@ public class GameActivity extends FragmentActivity implements OnMapReadyCallback
                 } else
                     Toast.makeText(this, provider + " не сработал", Toast.LENGTH_SHORT).show();
             }
+            Location location = loc;
+            if(location != null)
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 16.0f));
+
+            /*Окно для запроса изменения масштаба карты*//*
+            final Location location = loc;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Scale change");
+            builder.setMessage("Would you like change scale?");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(GameActivity.this, "ZBS", Toast.LENGTH_SHORT).show();
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 16.0f));
+                    //CameraUpdateFactory.zoomIn();
+                }
+            });
+            builder.setNegativeButton("No", null);
+            builder.show();*/
         }
+
+
     }
 
     @Override
@@ -147,5 +174,12 @@ public class GameActivity extends FragmentActivity implements OnMapReadyCallback
         location();
         UiSettings uiSettings = mMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(true);
+        /*mMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
+            @Override
+            public void onCameraMove() {
+                Toast.makeText(GameActivity.this, "Change", Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
     }
 }
