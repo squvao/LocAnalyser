@@ -1,14 +1,16 @@
-package com.squvao.locanalyser;
+package com.squvao.locanalyser.SettingsActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.squvao.locanalyser.AboutUsActivity;
+import com.squvao.locanalyser.R;
+import com.squvao.locanalyser.SettingsActivity.CommonSettingsActivity.CommonSettingsActivity;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -49,9 +51,25 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void buttonsListener(View view) {
         int id = view.getId(); //Опредеяем идентификатор кнопки нажатой в SettingsActivity
+        Intent intent = null;
         switch(id){
+            case R.id.content_settings_button_common:
+                intent = new Intent(SettingsActivity.this, CommonSettingsActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.content_settings_button_notifications:
+                intent = new Intent(SettingsActivity.this, NotificationsActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.content_settings_button_account:
+                intent = new Intent(SettingsActivity.this, AccountActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.content_settings_button_reset:
+                /*Function handler*/
+                break;
             case R.id.content_settings_button_about_us:
-                Intent intent = new Intent(SettingsActivity.this,AboutUsActivity.class);
+                intent = new Intent(SettingsActivity.this,AboutUsActivity.class);
                 startActivity(intent);
                 break;
             case R.id.content_settings_button_contact_author:

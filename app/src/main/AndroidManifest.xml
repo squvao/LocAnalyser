@@ -11,7 +11,6 @@
     у системы андроид к сервисам телефона. В данном случае поучаем дооступ к трем системам.
     Первая- gps, вторая- internet, третья- wifi.
     -->
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/main_icon"
@@ -44,7 +43,7 @@
             android:name=".GameActivity"
             android:label="@string/title_activity_game" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".SettingsActivity.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -54,6 +53,22 @@
         <activity
             android:name=".HelpActivity"
             android:label="@string/title_activity_help"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SettingsActivity.CommonSettingsActivity.CommonSettingsActivity"
+            android:label="@string/title_activity_common_settings"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SettingsActivity.NotificationsActivity"
+            android:label="@string/title_activity_notifications"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SettingsActivity.AccountActivity"
+            android:label="@string/title_activity_account"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SettingsActivity.CommonSettingsActivity.ApplicationThemeActivity"
+            android:label="@string/title_activity_application_theme"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

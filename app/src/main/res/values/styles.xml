@@ -30,6 +30,7 @@
     <style name="ButtonExitTheme" parent="ButtonTheme">
         <item name="android:background">@drawable/button_exit_background</item>
     </style>
+
     <style name="ButtonStarTheme" parent="ButtonTheme">
         <item name="android:background">@drawable/button_start_background</item>
     </style>
