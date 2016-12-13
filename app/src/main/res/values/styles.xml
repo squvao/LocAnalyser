@@ -35,4 +35,13 @@
         <item name="android:background">@drawable/button_start_background</item>
     </style>
 
+    <style name="ButtonEnterTheme" parent="ButtonTheme">
+        <item name="android:background">@drawable/button_enter_background</item>
+    </style>
+
+    <style name="TextLabel" parent="TextAppearance.AppCompat">
+        <item name="android:textColorHint">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
 </resources>

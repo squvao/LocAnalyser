@@ -1,5 +1,6 @@
 package com.squvao.locanalyser;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -21,6 +22,7 @@ import com.google.android.gms.maps.model.LatLng;
 public class GameActivity extends FragmentActivity implements OnMapReadyCallback {
     private LocationManager manager;
     private GoogleMap mMap;
+    boolean isOpen = false;
     private LocationListener listener = new android.location.LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
@@ -28,6 +30,15 @@ public class GameActivity extends FragmentActivity implements OnMapReadyCallback
             /*mMap.addMarker(new MarkerOptions().position(point).title("You're here"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(point));*/
             Toast.makeText(GameActivity.this, location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();
+
+            double latitude = location.getLatitude();
+            double longitude = location.getLongitude();
+
+            if(latitude == 65.9667 && longitude == -18.5333 && !isOpen) {
+                Intent intent = new Intent(GameActivity.this, PopupObjectActivity.class);
+                startActivity(intent);
+                isOpen = true;
+            }
         }
 
         @Override

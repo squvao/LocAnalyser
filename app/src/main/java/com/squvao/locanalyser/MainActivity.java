@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         строку закрыть.
          */
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,
-                R.string.action_bar_drawer_toggle_open,R.string.action_bar_drawer_toggle_close);
+                R.string.action_bar_drawer_toggle_open,R.string.action_bar_drawer_toggle_close) ;
         /*
         добавление для DrawerLayout обработчика выдвижения
         ящика (три полоски начинаю вращаться по часовой стрелке при выдвижения ящика)

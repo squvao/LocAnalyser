@@ -2,6 +2,7 @@ package com.squvao.locanalyser;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,7 @@ public class AuthorisationActivity extends AppCompatActivity {
 
     private void initComponents() {
         this.initButtonEnter();
+        ((Button)this.findViewById(R.id.forget)).setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
     }
 
     private void initButtonEnter() {
